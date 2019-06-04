@@ -1,0 +1,8 @@
+.searchBar {
+    background: #4c4f53;
+    padding: 7px 0;
+}
+input[type="search"] {
+    margin: 0 7px;
+    width: 184px;
+}
