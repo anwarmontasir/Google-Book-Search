@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import './SearchBar.css';
 
 export default class SearchBar extends Component {
-    render() {
+    render(props) {
         return (
             <div className="searchBar">
-                <label for="site-search">Search:</label>
-                <input type="search" id="site-search" name="q" aria-label="Search through site content" />
+                <label htmlFor="searchTerm">Search:</label>
+                <input type="search" id="searchTerm" name="searchTerm" aria-label="Search through site content" value={this.props.searchTerm} onChange={e => this.props.valueChanged('searchTerm', e.target.value)} />
                 <button>Search</button>
             </div>
         )

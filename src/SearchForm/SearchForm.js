@@ -3,11 +3,11 @@ import SearchBar from '../SearchBar/SearchBar';
 import SearchFilters from '../SearchFilters/SearchFilters';
 
 export default class SearchForm extends Component {
-    render() {
+    render(props) {
         return (
-            <form>
-                <SearchBar />
-                <SearchFilters />
+            <form onSubmit={e => this.props.onSearch(e)}>
+                <SearchBar valueChanged={this.props.valueChanged} searchTerm={this.props.searchTerm} />
+                <SearchFilters valueChanged={this.props.valueChanged} />
             </form>
         )
     }
