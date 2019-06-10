@@ -9,7 +9,8 @@ class App extends Component {
     this.state = {
       searchTerm: '',
       printType: '',
-      bookType: ''
+      bookType: '', 
+      searchResults: []
     }
   }
 
@@ -40,7 +41,9 @@ class App extends Component {
       })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        this.setState({
+          searchResults: data.items
+        })
       })
   }
 
@@ -59,7 +62,7 @@ class App extends Component {
           <SearchForm onSearch={this.searchBooks.bind(this)} valueChanged={this.valueChanged.bind(this)} searchTerm={this.state.searchTerm} />
         </header>
         <main>
-          <SearchResults />
+          <SearchResults searchResults={this.state.searchResults} />
         </main>
         <footer>
           ©2019 this app.
