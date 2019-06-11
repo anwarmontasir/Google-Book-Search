@@ -8,7 +8,7 @@ class App extends Component {
     super(props);
     this.state = {
       searchTerm: '',
-      printType: '',
+      printType: 'all',
       bookType: '', 
       searchResults: []
     }
@@ -28,7 +28,11 @@ class App extends Component {
     const key = process.env.REACT_APP_KEY;
     const params = {
       q: this.state.searchTerm,
+      printType: this.state.printType,
       key: key
+    }
+    if (this.state.bookType.length > 1) {
+      params.filter = this.state.bookType;
     }
     const queryString = this.formatQueryParams(params);
     const search = `${url}?${queryString}`;
@@ -50,7 +54,6 @@ class App extends Component {
   formatQueryParams(params) {
     const queryItems = Object.keys(params)
       .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
-    console.log('queryItems',queryItems)
     return queryItems.join('&');
   }
 

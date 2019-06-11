@@ -20,6 +20,8 @@ header h1 {
     font-weight: 700;
 }
 
+main {padding: 2rem 0;}
+
 footer {
     text-align: center;
     font-size: .75rem;

@@ -1,14 +1,10 @@
 import React from 'react';
 import './SearchResult.css';
 
-const Entities = require('html-entities').XmlEntities;
- 
-const entities = new Entities();
-
 export default function SearchResults(props) {
-    const authors = props.volumeInfo.authors.join(', ');
+    const authors = props.volumeInfo.authors ? <p>Author: {props.volumeInfo.authors.join(', ')}</p> : '';
     const price = props.saleInfo.listPrice ? <p>Price: ${props.saleInfo.listPrice.amount}</p> : '';
-    const textSnippet = props.searchInfo ? entities.decode(props.searchInfo.textSnippet) : entities.decode(props.volumeInfo.description);
+    const textSnippet = props.searchInfo ? props.searchInfo.textSnippet : props.volumeInfo.description;
     
     return (
         <div className="searchResult">
@@ -17,9 +13,9 @@ export default function SearchResults(props) {
             </div>
             <div className="bookInfo">
                 <h2>{props.volumeInfo.title}</h2>
-                <p>Author: {authors}</p>
+                {authors}
                 {price}
-                <p className="textSnippet">{textSnippet}</p>
+                <p className="textSnippet" dangerouslySetInnerHTML={{ __html: textSnippet }}></p>
             </div>
         </div>
     )
